@@ -4,7 +4,7 @@
           :style="{ backgroundImage: `url(${imgsrc})` }"
         >
           <div
-            class="absolute inset-0 bg-black bg-opacity-80 flex gap-2 items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-6 text-center cursor-pointer hover:bg-gray-500 "
+            class="absolute inset-0 bg-black bg-opacity-80 flex gap-2 items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-6 text-center cursor-pointer hover:bg-gray-900 "
           >
           <div class="bg-[#BC9565] hover:bg-black rounded-full  px-3 py-2 text-center">
       

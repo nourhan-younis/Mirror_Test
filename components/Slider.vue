@@ -1,4 +1,3 @@
-<!-- components/ImageSlider.vue -->
 <template>
   <Swiper
     :modules="[Autoplay]"
@@ -9,7 +8,12 @@
     class="mySwiper"
   >
     <SwiperSlide v-for="(slide, index) in slides" :key="index">
-      <img :src="slide" class="w-full lg:h-250 h-120 object-cover zoom-animation" />
+      <img :src="slide" class="w-full lg:h-250 h-120  object-cover zoom-animation" />
+       <div
+        class="absolute inset-0  flex items-center justify-center"
+      >
+     
+      </div>
     </SwiperSlide>
   </Swiper>
 </template>
@@ -21,9 +25,10 @@ import 'swiper/css'
 import 'swiper/css/autoplay'
 
 const slides = [
-  '/images/39R5PQB.jpg',
-  '/images/3d-rendering-luxury-and-modern-living-room-with-good-design-leather-sofa.jpg',
-  '/images/modern-living-room-with-black-leather-sofa-in-front-of-a-wooden-panel.jpg',
+  '/images/interior/35.jpg',
+  '/images/interior/40.jpg',
+  '/images/interior/41.jpg',
+  '/images/interior/39.jpg',
 ]
 </script>
 
@@ -33,15 +38,14 @@ const slides = [
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1); /* Zoom in */
+    transform: scale(1.1);
   }
   100% {
-    transform: scale(2); /* Zoom out */
+    transform: scale(1); 
   }
 }
 
 .zoom-animation {
-  animation: zoomInOut 10s ease-in-out ;
-  transition: transform 20s ease-in-out;
+  animation: zoomInOut 40s ease-in-out infinite ;
 }
 </style>

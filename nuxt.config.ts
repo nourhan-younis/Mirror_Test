@@ -1,7 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
-    ssr: false,            // Disable server-side rendering
+    ssr: true,    
+    nitro: {
+    preset: 'static' // 👈 this is key for generating a dist folder
+  },        // Disable server-side rendering
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],

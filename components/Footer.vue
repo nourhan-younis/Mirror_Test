@@ -7,22 +7,22 @@
 
 
     <div class="text-center flex justify-center content-center cursor-pointer gap-3 mb-10 ">
-        <div class="bg-black hover:bg-[#BC9565] rounded-full  px-3 py-2 text-center">
+        <!-- <div class="bg-black hover:bg-[#BC9565] rounded-full  px-3 py-2 text-center">
 
             <i class="fa-brands fa-facebook-f  text-white "></i>
-        </div>
+        </div> -->
         <div class="bg-black hover:bg-[#BC9565] rounded-full px-3 py-2 text-center">
 
-            <i class="fa-brands fa-instagram  text-white "></i>
+            <a href="https://www.instagram.com/mirror_/#" target="_blank"><i class="fa-brands fa-instagram  text-white "></i></a>
         </div>
-        <div class="bg-black hover:bg-[#BC9565] rounded-full px-3 py-2 text-center">
+        <!-- <div class="bg-black hover:bg-[#BC9565] rounded-full px-3 py-2 text-center">
 
             <i class="fa-brands fa-twitter  text-white "></i>
         </div>
         <div class="bg-black hover:bg-[#BC9565] rounded-full px-3 py-2 text-center">
 
             <i class="fa-brands fa-linkedin-in text-white"></i>
-        </div>
+        </div> -->
 </div>
 
 
@@ -31,12 +31,12 @@
 
             <div>
                 <h1 class="text-xl mb-5 font-semibold md:text-2xl " >Other Pages</h1>
-                <ul class="font-light text-[17px] ">
-                    <li class="cursor-pointer hover:text-[#BC9565] mb-2">Home</li>
-                    <li class="cursor-pointer hover:text-[#BC9565] mb-2">About Us</li>
-                    <li class="cursor-pointer hover:text-[#BC9565] mb-2">Services</li>
-                    <li class="cursor-pointer hover:text-[#BC9565] mb-2">Contact</li>
-                    <li class="cursor-pointer hover:text-[#BC9565] mb-2">Project</li>
+                <ul class="font-light text-[17px] flex flex-col">
+                    <a href="#home" class="cursor-pointer hover:text-[#BC9565] mb-2">Home</a href="#">
+                    <a href="#aboutUs" class="cursor-pointer hover:text-[#BC9565] mb-2">About Us</a href="#">
+                    <a href="#services" class="cursor-pointer hover:text-[#BC9565] mb-2">Services</a href="#">
+                    <a href="#contact" class="cursor-pointer hover:text-[#BC9565] mb-2">Contact</a href="#">
+                    <a href="#projects" class="cursor-pointer hover:text-[#BC9565] mb-2">Project</a href="#">
                 </ul>
             </div>
             <div>
@@ -55,14 +55,15 @@
     <div class="flex flex-col ">
 
         <div  class="flex w-25 h-15 gap-2 mb-2 " >
-<img src="public/images/resident.jpg" alt="">
-<img src="public/images/corporate.jpg" alt="">
-<img src="public/images/commercial.jpg" alt="">
+<img src="/images/projects/pro1.png" alt="">
+<img src="/images/projects/pro2.png" alt="">
+<img src="/images/projects/pro3.png" alt="">
         </div>
         <div class="flex w-25 h-15 gap-2">
-<img src="public/images/restaurant.jpg" alt="">
-<img src="public/images/resental2.jpg" alt="">
-<img src="public/images/resstaurant 2.jpg" alt="">
+<img src="/images/projects/pro4.png" alt="">
+<img src="/images/projects/pro5.png" alt="">
+<img src="/images/projects/pro6.png" alt="">
+
         </div>
     </div>
 </div>
@@ -71,7 +72,7 @@
 
 <hr class="text-gray-200 my-0" >
 
-    <div class="flex flex-col justify-around items-center font-light text-sm my-5 gap-2 md:flex-row md:text-base">
+    <div class="flex flex-col justify-around items-center font-light text-sm my-5 mb-10 gap-2 md:flex-row md:text-base">
 <p>Interior Design Template Kit by Jegtheme</p>
 <p>Copyright © 2024. All rights reserved.</p>
     </div>
