@@ -4,7 +4,7 @@
     :space-between="10"
     :loop="true"
     :autoplay="{ delay: 3000 }"
-         :breakpoints="{
+    :breakpoints="{
       0: {
         slidesPerView: 1,
       },
@@ -20,36 +20,33 @@
     }"
     class="mySwiper"
   >
-    <SwiperSlide v-for="(item, index) in images" :key="index">
-      <div class="flex lg:ml-8 bg-white p-8  rounded-xl flex-col  lg:w-FULL text-left items-center  lg:items-start w-[90%] ml-15">
-        <p class=" font-light mb-5 ">{{ item.description }}</p>
-        <div>
-<div class="flex gap-25 items-center">
-            <div class="flex gap-5 items-center">
-                <div>
-                    <img
-                      :src="item.src"
-                      alt="slide image"
-                      class="w-15 h-15 object-cover rounded-full shadow-lg "
-                    />
-
-                </div>
-<div >
-
-    <h2 class="text-sm font-semibold  text-gray-800 lg:text-lg">{{ item.name }}</h2>
-    <p class="text-sm text-gray-600 mt-1 max-w-xs">
-      {{ item.title }}
-    </p>
-</div>
-  </div>
-  <div>
-
-      <i class="fa-solid fa-comments text-[#BC9565] text-2xl"></i>
-  </div>
-  </div>
-               
-    
+    <SwiperSlide
+      v-for="(comment, index) in comments"
+      :key="index"
+      class="h-full"
+    >
+      <div class="flex flex-col justify-between h-full bg-white p-6 md:p-8 rounded-xl w-full max-w-[95%] mx-auto text-center lg:text-left">
+        <p class="font-light break-words text-sm md:text-base grow mb-5">
+          {{ comment.message }}
+        </p>
+        <div class="flex justify-around  items-center mt-auto gap-4 lg:gap-[30%] lg:justify-start">
+          <div class="flex gap-4 items-center">
+            <img
+              :src="comment.images?.[0] ? `${imageUrl}${comment.images[0]}` : '/images/persons/default.png'"
+              alt="slide image"
+              class="w-12 h-12 md:w-16 md:h-16 object-cover rounded-full shadow-lg"
+            />
+            <div>
+              <h2 class="text-sm font-semibold text-gray-800 lg:text-lg">
+                {{ comment.name }}
+              </h2>
+              <p class="text-sm text-gray-600 mt-1 max-w-xs">
+                {{ comment.position }}
+              </p>
             </div>
+          </div>
+          <i class="fa-solid fa-comments text-[#BC9565] text-xl md:text-2xl"></i>
+        </div>
       </div>
     </SwiperSlide>
   </Swiper>
@@ -60,31 +57,22 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/autoplay'
+import { useRuntimeConfig } from '#app'
 
-const images = [
-  {
-    src: '/images/baily.png',
-    name: 'Bailey Dupont',
-    title: 'Designer',
-    description: 'My soul is filled with a beautiful tranquility, reminiscent of the gentle mornings of spring that I embrace wholeheartedly, awakening a profound sense of contentment within me.'
-  },
-  {
-    src: '/images/lars.jpg',
-    name: 'Lars Peeters',
-    title: 'CEO',
-    description:'An overwhelming sense of peace has enveloped my being, akin to the blissful mornings of spring where every moment is cherished with utmost sincerity and joy.'
-  },
-  {
-    src: '/images/hae won.png',
-    name: 'Hae-won Jeon',
-    title: 'Manager',
-    description:'My soul is filled with a beautiful tranquility, reminiscent of the gentle mornings of spring that I embrace wholeheartedly, awakening a profound sense of contentment within me.'
-  },
-  {
-    src: '/images/harper.png',
-    name: 'Harper Russo',
-    title: 'Manager.',
-    description:'An overwhelming sense of peace has enveloped my being, akin to the blissful mornings of spring where every moment is cherished with utmost sincerity and joy.'
-  },
-]
+const config = useRuntimeConfig()
+const imageUrl = process.dev ? config.public.imageUrlLocal : config.public.imageUrlProd
+
+defineProps({
+  comments: {
+    type: Array,
+    required: true
+  }
+})
 </script>
+
+<style>
+.mySwiper .swiper-slide {
+  display: flex;
+  height: auto !important;
+}
+</style>

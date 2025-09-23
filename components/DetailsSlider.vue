@@ -10,17 +10,16 @@
   </Swiper>
 </template>
 
-<script setup>
+<script  setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 
-const images = [
-  '/images/projects/hov1.png',
-  '/images/projects/hov2.png',
-  '/images/projects/hov4.png',
-]
+const props = defineProps<{
+  images: string[]
+}>()
+
 </script>
 <style>
 .swiper-button-prev,

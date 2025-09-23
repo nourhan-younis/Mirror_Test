@@ -8,7 +8,7 @@
     class="mySwiper"
   >
     <SwiperSlide v-for="(slide, index) in slides" :key="index">
-      <img :src="slide" class="w-full lg:h-250 h-120  object-cover zoom-animation" />
+      <img :src="slide" class="w-full lg:h-250 h-[100vh]  object-cover zoom-animation" />
        <div
         class="absolute inset-0  flex items-center justify-center"
       >

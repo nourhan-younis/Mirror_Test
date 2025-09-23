@@ -1,6 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
+   runtimeConfig: {
+    public: {
+      apiBaseLocal: 'https://api.mirrorengineering.com/api',
+      apiBaseProd: 'https://api.mirrorengineering.com/api',
+      imageUrlLocal: 'https://api.mirrorengineering.com',
+      imageUrlProd: 'https://api.mirrorengineering.com'
+    }
+  },
     ssr: true,    
     nitro: {
     preset: 'static' // 👈 this is key for generating a dist folder
