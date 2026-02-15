@@ -13,7 +13,8 @@
         </div> -->
         <div class="bg-black hover:bg-[#BC9565] rounded-full px-3 py-2 text-center">
 
-            <a href="https://www.instagram.com/mirror_/#" target="_blank"><i class="fa-brands fa-instagram  text-white "></i></a>
+            <a href="https://www.instagram.com/mirror_/#" target="_blank"><i
+                    class="fa-brands fa-instagram  text-white "></i></a>
         </div>
         <!-- <div class="bg-black hover:bg-[#BC9565] rounded-full px-3 py-2 text-center">
 
@@ -23,14 +24,14 @@
 
             <i class="fa-brands fa-linkedin-in text-white"></i>
         </div> -->
-</div>
+    </div>
 
 
-        <div class="flex flex-col md:flex-row md:justify-around md:mr-50">
+    <div class="flex flex-col md:flex-row md:justify-around md:mr-50">
         <div class="flex  justify-around mb-8 md:gap-10 lg:gap-40 ">
 
             <div>
-                <h1 class="text-xl mb-5 font-semibold md:text-2xl " >Other Pages</h1>
+                <h1 class="text-xl mb-5 font-semibold md:text-2xl ">Other Pages</h1>
                 <ul class="font-light text-[17px] flex flex-col">
                     <a href="#home" class="cursor-pointer hover:text-[#BC9565] mb-2">Home</a href="#">
                     <a href="#aboutUs" class="cursor-pointer hover:text-[#BC9565] mb-2">About Us</a href="#">
@@ -50,30 +51,72 @@
                 </ul>
             </div>
         </div>
-<div class="mb-1 flex flex-col sm:items-left ml-10 sm:ml-30 md:mx-5">
-    <h1 class="text-xl mb-5 font-semibold md:text-2xl">Latest Projects</h1>
-    <div class="flex flex-col ">
+        <!-- Latest Projects -->
+        <div class="mb-1 flex flex-col sm:items-left ml-10 sm:ml-30 md:mx-5">
+            <h1 class="text-xl mb-5 font-semibold md:text-2xl">Latest Projects</h1>
 
-        <div  class="flex w-25 h-15 gap-2 mb-2 " >
-<img src="/images/projects/pro1.png" alt="">
-<img src="/images/projects/pro2.png" alt="">
-<img src="/images/projects/pro3.png" alt="">
+            <div v-if="isLoading" class="text-gray-400 text-sm">Loading...</div>
+
+            <div v-else class="flex flex-col gap-2">
+                <div class="flex gap-2 cursor-pointer">
+                    <NuxtLink v-for="p in latestRow1" :key="p._id" :to="`/project/${p._id}`"
+                        class="block overflow-hidden rounded">
+                        <img :src="`${imageUrl}${p.images[0]}`"
+                            class="w-25 h-15 object-cover hover:scale-110 transition duration-300" />
+                    </NuxtLink>
+                </div>
+
+                <div class="flex gap-2">
+                    <NuxtLink v-for="p in latestRow2" :key="p._id" :to="`/project/${p._id}`"
+                        class="block overflow-hidden rounded">
+                        <img :src="`${imageUrl}${p.images[0]}`"
+                            class="w-25 h-15 object-cover hover:scale-110 transition duration-300" />
+                    </NuxtLink>
+                </div>
+            </div>
         </div>
-        <div class="flex w-25 h-15 gap-2">
-<img src="/images/projects/pro4.png" alt="">
-<img src="/images/projects/pro5.png" alt="">
-<img src="/images/projects/pro6.png" alt="">
 
-        </div>
-    </div>
-</div>
+
 
     </div>
 
-<hr class="text-gray-200 my-0" >
+    <hr class="text-gray-200 my-0">
 
     <div class="flex flex-col justify-around items-center font-light text-sm my-5 mb-10 gap-2 md:flex-row md:text-base">
-<p>Interior Design Template Kit by Jegtheme</p>
-<p>Copyright © 2024. All rights reserved.</p>
+        <p>Interior Design Template Kit by Jegtheme</p>
+        <p>Copyright © 2024. All rights reserved.</p>
     </div>
 </template>
+
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
+
+const config = useRuntimeConfig()
+const apiUrl = process.dev ? config.public.apiBaseLocal : config.public.apiBaseProd
+const imageUrl = process.dev ? config.public.imageUrlLocal : config.public.imageUrlProd
+
+type Project = {
+    _id: string
+    images: string[]
+}
+
+const latestProjects = ref<Project[]>([])
+const isLoading = ref(true)
+
+const loadLatest = async () => {
+    try {
+        const data = await $fetch<{ projects: Project[] }>(
+            `${apiUrl}/projects?page=1&limit=6`
+        )
+        latestProjects.value = data.projects
+    } catch (err) {
+        console.error(err)
+    }
+    isLoading.value = false
+}
+
+onMounted(loadLatest)
+
+const latestRow1 = computed(() => latestProjects.value.slice(0, 3))
+const latestRow2 = computed(() => latestProjects.value.slice(3, 6))
+</script>
