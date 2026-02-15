@@ -8,7 +8,7 @@
     </div>
 
     <!-- Categories -->
-    <div v-if="!isLoadingCat" class="flex flex-wrap justify-center gap-4 mb-10 uppercase text-base md:text-lg font-medium list-none">
+    <!-- <div v-if="!isLoadingCat" class="flex flex-wrap justify-center gap-4 mb-10 uppercase text-base md:text-lg font-medium list-none">
       <li
         class="cursor-pointer px-4 py-2 rounded-full hover:bg-black hover:text-white transition"
         :class="{ 'bg-black text-white': !selectedCategory }"
@@ -21,7 +21,7 @@
         :class="{ 'bg-black text-white': selectedCategory === cat._id }"
         @click="selectCategory(cat._id)"
       >{{ cat.name }}</li>
-    </div>
+    </div> -->
 
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 min-h-[300px] relative">
@@ -59,7 +59,7 @@
     </div>
 
     <!-- Pagination -->
-    <div v-if="totalPages > 1" class="flex justify-center items-center gap-6 mb-4">
+    <!-- <div v-if="totalPages > 1" class="flex justify-center items-center gap-6 mb-4">
       <button
         class="p-2 border rounded-full disabled:opacity-30 hover:bg-black hover:text-white transition"
         :disabled="currentPage <= 1"
@@ -85,8 +85,20 @@
                 d="M9 5l7 7-7 7"/>
         </svg>
       </button>
-    </div>
+    </div> -->
   </div>
+
+  <div class="flex justify-center mt-6">
+  <NuxtLink
+    to="/all-projects"
+    class="px-8 py-3 border border-black rounded-full font-medium
+           hover:bg-black hover:text-white transition-all duration-300
+           transform hover:scale-105"
+  >
+    View All Projects →
+  </NuxtLink>
+</div>
+
 </template>
 <script setup lang="ts">
 import { ref, watch, onMounted } from 'vue'
@@ -128,19 +140,15 @@ const loadCategories = async () => {
 const loadProjects = async () => {
   isLoading.value = true
   try {
-    let url = `${apiUrl}/projects?page=${currentPage.value}&limit=${pageSize}`
-    if (selectedCategory.value) {
-      url += `&category=${selectedCategory.value}`
-    }
-    const data = await $fetch<{ projects: Project[]; total: number }>(url)
+    const url = `${apiUrl}/projects?page=1&limit=6`
+    const data = await $fetch<{ projects: Project[] }>(url)
     projects.value = data.projects
-    totalPages.value = Math.ceil(data.total / pageSize)
   } catch (error) {
-    console.error('Failed to load projects:', error)
-     isLoading.value = false
+    console.error(error)
   }
   isLoading.value = false
 }
+
 
 onMounted(async () => {
   await loadCategories()
