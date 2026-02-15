@@ -19,12 +19,13 @@
           Accelerating Construction with smart BIM & Fast-Track Engineering - Built for Accuracy,
           Designed for progress.
         </p>
-        <NuxtLink
-          to="/portfolio"
+        <button
+          v-if="pdfUrl"
+          @click="openPortfolio"
           class="lg:px-10 lg:py-5 px-5 py-3 border-1 cursor-pointer font-medium text-white border-white hover:bg-white hover:border-1 hover:text-black"
         >
           VIEW PORTFOLIO
-        </NuxtLink>
+        </button>
       </div>
 
       <!-- ✅ Updated Play Icon with API Call -->
@@ -64,11 +65,36 @@ import Slider from '~/components/Slider.vue'
 
 const showModal = ref(false)
 const videoUrl = ref('')
+const pdfUrl = ref('')
 
 // Your backend base URL — adjust for dev/prod
 const config = useRuntimeConfig()
 const apiBase = process.dev ? config.public.apiBaseLocal : config.public.apiBaseProd
 const imgPath = process.dev ? config.public.imageUrlLocal : config.public.imageUrlProd
+
+
+function openPortfolio() {
+  if (pdfUrl.value) {
+    window.open(pdfUrl.value, '_blank')
+  } else {
+    alert('Portfolio not uploaded yet!')
+  }
+}
+
+
+async function loadPortfolio() {
+  try {
+    const res = await fetch(`${apiBase}/portfolio`)
+    if (!res.ok) throw new Error('Failed to fetch portfolio')
+
+    const data = await res.json()
+    if (!data || !data.pdf) return
+
+    pdfUrl.value = `${imgPath}/uploads/pdf/${data.pdf}`
+  } catch (err) {
+    console.error(err)
+  }
+}
 
 async function openVideo() {
   try {
@@ -91,5 +117,9 @@ async function openVideo() {
     alert('Error loading video')
   }
 }
+
+onMounted(()=>{
+  loadPortfolio()
+})
 </script>
 
