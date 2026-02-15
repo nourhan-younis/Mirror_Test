@@ -65,12 +65,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted,onUnmounted,onBeforeUnmount } from 'vue'
 
 const aboutUsRef = ref<HTMLElement | null>(null)
 const inView = ref(false)
 
 let observer: IntersectionObserver | null = null
+
+function handleKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && showModal.value) {
+    showModal.value = false
+  }
+}
+
 
 onMounted(() => {
   if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
@@ -86,6 +93,11 @@ onMounted(() => {
   } else {
     inView.value = true
   }
+    window.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
 })
 
 onBeforeUnmount(() => {

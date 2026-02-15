@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from '~/components/NavBar.vue'
 import Slider from '~/components/Slider.vue'
 
@@ -118,8 +118,19 @@ async function openVideo() {
   }
 }
 
+function handleKeydown(e: KeyboardEvent) {
+  if (e.key === 'Escape' && showModal.value) {
+    showModal.value = false
+  }
+}
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
+})
+
 onMounted(()=>{
-  loadPortfolio()
+  loadPortfolio();
+   window.addEventListener('keydown', handleKeydown);
 })
 </script>
 
