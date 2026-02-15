@@ -2,7 +2,7 @@
   <div class="w-full px-4 md:px-32 mt-0 relative">
     <div class="flex justify-between items-center w-full z-50 relative">
       <!-- Logo -->
-      <div class="w-36 z-50 relative">
+      <div class="w-40 z-50 relative">
         <img src="/images/mirror logo.png" alt="Logo">
       </div>
 
