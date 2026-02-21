@@ -49,9 +49,11 @@
 
 </div>
 
-
+   <div class="text-center max-w-4xl mx-auto mt-32 mb-4">
+     <h1 class="uppercase font-medium text-2xl md:text-4xl">Our Clients</h1>
+   </div>
     <!-- section 6 -->
-    <div class="mt-32 w-full bg-gray-50 py-8 pl-20 pr-10 md:pl-45 md:py-15S ">
+    <div class=" w-full bg-gray-50 py-8 pl-20 pr-10 md:pl-45 md:py-15S ">
         <div>
             <SliderIcon />
         </div>
