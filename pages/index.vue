@@ -61,8 +61,8 @@
 
     <!-- section 7 -->
     <HowSection />
-
-
+  
+ <WhoWeServe />
     <!-- section 8 -->
     <div class="mt-24 flex flex-col lg:flex-row w-full items-center">
         <div class="w-full lg:w-[50%]">
