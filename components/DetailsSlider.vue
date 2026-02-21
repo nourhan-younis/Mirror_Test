@@ -1,13 +1,27 @@
 <template>
-  <Swiper
-    :modules="[Navigation]"
-    navigation
-    class="mySwiper w-full h-80 md:w-[80%] md:h-100"
-  >
-    <SwiperSlide v-for="(img, index) in images" :key="index">
-      <img :src="img" class="w-full h-full object-cover rounded-4xl" />
-    </SwiperSlide>
-  </Swiper>
+  <div class="relative w-full md:w-[85%] mx-auto">
+
+    <Swiper
+      :modules="[Navigation]"
+      navigation
+      class="rounded-3xl overflow-hidden shadow-xl"
+      style="height: fit-content;"
+    >
+      <SwiperSlide
+        v-for="(img, index) in images"
+        :key="index"
+      >
+        <div class="slide-wrapper">
+          <img
+            :src="img"
+            class="slide-image"
+            loading="lazy"
+          />
+        </div>
+      </SwiperSlide>
+    </Swiper>
+
+  </div>
 </template>
 
 <script  setup lang="ts">
